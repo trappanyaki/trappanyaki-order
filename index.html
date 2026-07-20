@@ -16,6 +16,29 @@
 <meta name="twitter:description" content="Build your plate, see your total, and lock in your order. Bless Ya Taste Buds.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/mascot.png">
 <meta name="theme-color" content="#0b0906">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  "name": "TRAPPANYAKI",
+  "url": "https://trappanyaki.github.io/trappanyaki-order/",
+  "servesCuisine": "Hibachi",
+  "priceRange": "$$-$$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2988 Frank Brown Ln",
+    "addressLocality": "Tracy",
+    "addressRegion": "CA",
+    "postalCode": "95377",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://instagram.com/TRAPPANYAKI",
+    "https://www.facebook.com/Trappanyaki",
+    "https://www.tiktok.com/@trappanyaki"
+  ]
+}
+</script>
 <style>
   :root{
     --bg:#0b0906;
@@ -49,6 +72,19 @@
     border-bottom:1px solid var(--border);
   }
   .hero-inner{max-width:720px;margin:0 auto;}
+  .site-nav{
+    position:sticky;top:0;z-index:40;
+    display:flex;justify-content:center;gap:28px;
+    background:rgba(11,9,6,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+    padding:12px 16px;
+  }
+  .site-nav a{
+    color:var(--text-dim);text-decoration:none;
+    font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  }
+  .site-nav a:hover{color:var(--gold);}
   header{text-align:center;padding:8px 0 0;}
   header .logo-img{width:min(220px,60vw);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 4px 18px rgba(0,0,0,0.6));}
   header .brand{
@@ -206,6 +242,8 @@
   }
   .toast.show{opacity:1;}
   .footer-note{text-align:center;color:var(--text-dim);font-size:.78rem;margin-top:26px;}
+  .footer-note a{color:var(--gold);text-decoration:none;font-weight:600;}
+  .footer-note a:hover{text-decoration:underline;}
   .price-tag{color:var(--gold);font-weight:700;}
 </style>
 </head>
@@ -219,6 +257,12 @@
   </div>
   <img class="mascot-float" src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/mascot.png" alt="TRAPPANYAKI mascot">
 </div>
+
+<nav class="site-nav">
+  <a href="#order">Order</a>
+  <a href="#catering">Catering</a>
+  <a href="#faq">FAQ</a>
+</nav>
 
 <div class="wrap">
 
@@ -267,7 +311,7 @@
     </ul>
   </div>
 
-  <div class="card">
+  <div class="card" id="order">
     <h2>Build Your Order</h2>
 
     <label for="dish">Dish</label>
@@ -327,7 +371,7 @@
     <button class="secondary" id="igBtn">Message @TRAPPANYAKI on Instagram</button>
   </div>
 
-  <div class="card">
+  <div class="card" id="catering">
     <h2>Catering</h2>
     <p class="policy">TRAPPANYAKI does live hibachi catering — real setup, real fire, real food.</p>
     <div class="catering-tier">
@@ -345,7 +389,7 @@
     <button class="secondary" id="cateringIgBtn">DM "ORDER" for a Catering Quote</button>
   </div>
 
-  <div class="card">
+  <div class="card" id="faq">
     <h2>FAQ</h2>
     <details class="faq-item">
       <summary>Can I cancel my order?</summary>
@@ -365,6 +409,11 @@
     </details>
   </div>
 
+  <p class="footer-note">
+    <a href="https://instagram.com/TRAPPANYAKI" target="_blank" rel="noopener">Instagram</a> &middot;
+    <a href="https://www.facebook.com/Trappanyaki" target="_blank" rel="noopener">Facebook</a> &middot;
+    <a href="https://www.tiktok.com/@trappanyaki" target="_blank" rel="noopener">TikTok</a>
+  </p>
   <p class="footer-note">TRAPPANYAKI &middot; Luxury Street Hibachi &middot; Bless Ya Taste Buds.</p>
 </div>
 
