@@ -96,6 +96,22 @@
     flex-shrink:0;
   }
   .step-label{font-size:.85rem;color:var(--text-dim);line-height:1.3;}
+  .catering-tier{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+  .catering-tier:first-of-type{margin-top:16px;border-top:none;padding-top:0;}
+  .catering-tier h3{margin:0 0 6px;font-size:.95rem;color:var(--gold);}
+  .faq-item{
+    border-top:1px solid var(--border);
+    padding:12px 0;
+  }
+  .faq-item:first-of-type{border-top:none;padding-top:4px;}
+  .faq-item summary{
+    cursor:pointer;font-weight:600;font-size:.95rem;
+    list-style:none;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::before{content:"+ ";color:var(--fire-orange);font-weight:800;}
+  .faq-item[open] summary::before{content:"− ";}
+  .faq-item p{margin:10px 0 0;}
   .card{
     background:var(--bg-panel);
     border:1px solid var(--border);
@@ -311,6 +327,44 @@
     <button class="secondary" id="igBtn">Message @TRAPPANYAKI on Instagram</button>
   </div>
 
+  <div class="card">
+    <h2>Catering</h2>
+    <p class="policy">TRAPPANYAKI does live hibachi catering — real setup, real fire, real food.</p>
+    <div class="catering-tier">
+      <h3>🎉 Private Event</h3>
+      <p class="policy">Packages starting at <strong>$1,500</strong> for 20–50 guests (live hibachi, full setup). Full production events (50–150+ guests) start at <strong>$4,000</strong>.</p>
+    </div>
+    <div class="catering-tier">
+      <h3>🏢 Corporate / Office</h3>
+      <p class="policy">Starting at <strong>$35/head</strong> for team lunches and scales up from there. We handle setup, cooking, and service — you handle headcount.</p>
+    </div>
+    <div class="catering-tier">
+      <h3>❓ Something Else</h3>
+      <p class="policy">Got something else in mind? Drop the details (date, guest count, vibe) and we'll let you know if we can make it happen.</p>
+    </div>
+    <button class="secondary" id="cateringIgBtn">DM "ORDER" for a Catering Quote</button>
+  </div>
+
+  <div class="card">
+    <h2>FAQ</h2>
+    <details class="faq-item">
+      <summary>Can I cancel my order?</summary>
+      <p class="policy">No refunds, but we'll happily reschedule you to the next available cook window — just DM us.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Do you accommodate allergies or substitutions?</summary>
+      <p class="policy">Yes — let us know when you order and we'll do our best to accommodate allergy requests or ingredient swaps.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can I change my order after I pay?</summary>
+      <p class="policy">Once your order is confirmed, it's locked in for that cook window — no changes after that, so double-check before you send payment.</p>
+    </details>
+    <details class="faq-item">
+      <summary>How far ahead do I need to order?</summary>
+      <p class="policy">For same-day pickup, get your order in before 11 PM. After that, you're looking at the next available batch.</p>
+    </details>
+  </div>
+
   <p class="footer-note">TRAPPANYAKI &middot; Luxury Street Hibachi &middot; Bless Ya Taste Buds.</p>
 </div>
 
@@ -463,6 +517,10 @@
   });
 
   document.getElementById("igBtn").addEventListener("click", () => {
+    window.open("https://instagram.com/TRAPPANYAKI", "_blank");
+  });
+
+  document.getElementById("cateringIgBtn").addEventListener("click", () => {
     window.open("https://instagram.com/TRAPPANYAKI", "_blank");
   });
 
