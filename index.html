@@ -109,6 +109,14 @@
   .food-card{padding:0;overflow:hidden;}
   .food-photo{width:100%;height:auto;display:block;max-height:420px;object-fit:cover;}
   .food-caption{padding:14px 20px;margin:0;text-align:center;font-style:italic;}
+  .gallery-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  }
+  .gallery-grid img{
+    width:100%;height:180px;object-fit:cover;
+    border-radius:10px;border:1px solid var(--border);
+    display:block;
+  }
   .batch-bar-track{
     width:100%;height:16px;border-radius:8px;
     background:var(--bg-panel-2);border:1px solid var(--border);
@@ -269,6 +277,16 @@
   <div class="card food-card">
     <img class="food-photo" src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/food1.jpg" alt="Real TRAPPANYAKI hibachi plate, fresh off the grill">
     <p class="policy food-caption">Fresh off the grill — real plates, real fire.</p>
+  </div>
+
+  <div class="card gallery-card">
+    <h2>The Food</h2>
+    <div class="gallery-grid">
+      <img src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/food2.jpg" alt="Shrimp, chicken, and steak hibachi bowl">
+      <img src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/food3.jpg" alt="Salmon, shrimp, and steak combo plate">
+      <img src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/food4.jpg" alt="TRAPPANYAKI Rito, grilled and wrapped">
+      <img src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/food5.jpg" alt="TRAPPANYAKI Rito cross-section with sauce">
+    </div>
   </div>
 
   <div class="card">
