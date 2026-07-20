@@ -355,6 +355,12 @@
       lines.push(`- ${l.name}${l.rito ? " (Rito)" : ""} x${l.qty} — ${fmt((l.price + (l.rito ? RITO_PRICE : 0)) * l.qty)}`);
     });
     lines.push(``, `TOTAL: ${fmt(total)}`);
+
+    const today = new Date().toISOString().slice(0, 10);
+    const itemsList = order.map(l => `${l.name}${l.rito ? " (Rito)" : ""} x${l.qty}`).join("; ");
+    const trackerRow = [today, "Plate", name, handle, itemsList, total.toFixed(2), date, "", "New Lead", ""].join("\t");
+    lines.push(``, `— — —`, `For Trapp: copy the line below and paste it as a new row into the tracker sheet —`, trackerRow);
+
     return lines.join("\n");
   }
 
