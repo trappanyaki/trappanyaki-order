@@ -73,6 +73,19 @@
   .food-card{padding:0;overflow:hidden;}
   .food-photo{width:100%;height:auto;display:block;max-height:420px;object-fit:cover;}
   .food-caption{padding:14px 20px;margin:0;text-align:center;font-style:italic;}
+  .batch-bar-track{
+    width:100%;height:16px;border-radius:8px;
+    background:var(--bg-panel-2);border:1px solid var(--border);
+    overflow:hidden;
+  }
+  .batch-bar-fill{
+    height:100%;border-radius:8px;
+    background:linear-gradient(90deg,var(--fire-orange),var(--fire-red));
+    transition:width .3s ease;
+  }
+  .batch-bar-fill.full{background:linear-gradient(90deg,#e0392b,#8f1f16);}
+  .batch-status{margin:12px 0 0;font-size:.92rem;font-weight:600;text-align:center;}
+  .batch-status.full{color:var(--fire-red);}
   .card{
     background:var(--bg-panel);
     border:1px solid var(--border);
@@ -187,11 +200,19 @@
     <p class="policy food-caption">Fresh off the grill — real plates, real fire.</p>
   </div>
 
+  <div class="card" id="batchCard">
+    <h2>Next Cook Window</h2>
+    <div class="batch-bar-track">
+      <div class="batch-bar-fill" id="batchBarFill"></div>
+    </div>
+    <p class="batch-status" id="batchStatusText"></p>
+  </div>
+
   <div class="card policy">
     <h2>Before You Order</h2>
     <ul>
       <li>All orders are <strong>prepay before cook</strong> — no exceptions.</li>
-      <li>Cook windows are limited — we cook in batches, not on demand.</li>
+      <li>Cook windows are limited to <strong>8 plates per batch</strong> — we cook in batches, not on demand.</li>
       <li>Pickup only (no delivery unless DoorDash is live in your area).</li>
       <li>Pickup at <strong>2988 Frank Brown Ln</strong>, <strong>4 PM–12 AM</strong>.</li>
     </ul>
@@ -263,6 +284,26 @@
 <div class="toast" id="toast"></div>
 
 <script>
+  // Update BATCH_COUNT whenever a plate order is confirmed; reset to 0 after each cook.
+  const BATCH_COUNT = 0;
+  const BATCH_CAP = 8;
+
+  function renderBatchStatus() {
+    const pct = Math.min(100, Math.round((BATCH_COUNT / BATCH_CAP) * 100));
+    const fill = document.getElementById("batchBarFill");
+    const status = document.getElementById("batchStatusText");
+    fill.style.width = pct + "%";
+    const isFull = BATCH_COUNT >= BATCH_CAP;
+    fill.classList.toggle("full", isFull);
+    status.classList.toggle("full", isFull);
+    if (isFull) {
+      status.textContent = "🔒 This batch is FULL — next window opens once this one cooks. Check back soon!";
+    } else {
+      const left = BATCH_CAP - BATCH_COUNT;
+      status.textContent = `🔥 ${BATCH_COUNT}/${BATCH_CAP} plates committed — ${left} spot${left === 1 ? "" : "s"} left, DM ORDER to grab one!`;
+    }
+  }
+
   const MENU = [
     { name: "Chicken", price: 24.99 },
     { name: "Shrimp", price: 29.99 },
@@ -364,6 +405,10 @@
     });
     lines.push(``, `TOTAL: ${fmt(total)}`);
 
+    if (BATCH_COUNT >= BATCH_CAP) {
+      lines.push(``, `⚠️ NOTE: Current batch is FULL — this would be for the NEXT cook window.`);
+    }
+
     const today = new Date().toISOString().slice(0, 10);
     const itemsList = order.map(l => `${l.name}${l.rito ? " (Rito)" : ""} x${l.qty}`).join("; ");
     const trackerRow = [today, "Plate", name, handle, itemsList, total.toFixed(2), date, "", "New Lead", ""].join("\t");
@@ -376,7 +421,9 @@
     if (order.length === 0) { showToast("Add at least one item first"); return; }
     const summary = buildSummary();
     navigator.clipboard.writeText(summary).then(() => {
-      showToast("Order summary copied — paste it into your DM");
+      showToast(BATCH_COUNT >= BATCH_CAP
+        ? "Batch is full — copied as a NEXT-window order"
+        : "Order summary copied — paste it into your DM");
     }).catch(() => {
       showToast("Couldn't copy — select and copy manually");
     });
@@ -385,6 +432,8 @@
   document.getElementById("igBtn").addEventListener("click", () => {
     window.open("https://instagram.com/TRAPPANYAKI", "_blank");
   });
+
+  renderBatchStatus();
 
   render();
 </script>
