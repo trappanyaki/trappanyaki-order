@@ -25,8 +25,20 @@
     color:var(--text);
     line-height:1.5;
   }
-  .wrap{max-width:720px;margin:0 auto;padding:24px 16px 80px;}
-  header{text-align:center;padding:28px 0 8px;}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px 80px;}
+  .hero{
+    position:relative;
+    margin:0 0 8px;
+    padding:36px 16px 28px;
+    text-align:center;
+    background:
+      linear-gradient(180deg, rgba(11,9,6,0.55) 0%, rgba(11,9,6,0.88) 75%, var(--bg) 100%),
+      url("assets/hero.jpg") center 30% / cover no-repeat;
+    border-bottom:1px solid var(--border);
+  }
+  .hero-inner{max-width:720px;margin:0 auto;}
+  header{text-align:center;padding:8px 0 0;}
+  header .logo-img{width:min(220px,60vw);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 4px 18px rgba(0,0,0,0.6));}
   header .brand{
     font-size:2rem;
     font-weight:800;
@@ -38,6 +50,14 @@
     margin:0;
   }
   header .tag{color:var(--text-dim);font-size:.85rem;letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+  .mascot-float{
+    position:absolute;
+    right:6px;
+    bottom:-18px;
+    width:min(120px,28vw);
+    height:auto;
+    filter:drop-shadow(0 6px 14px rgba(0,0,0,0.6));
+  }
   .card{
     background:var(--bg-panel);
     border:1px solid var(--border);
@@ -135,12 +155,17 @@
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="hero">
+  <div class="hero-inner">
+    <header>
+      <img class="logo-img" src="assets/logo.png" alt="TRAPPANYAKI logo">
+      <p class="tag">Luxury Street Hibachi &middot; Bless Ya Taste Buds</p>
+    </header>
+  </div>
+  <img class="mascot-float" src="assets/mascot.png" alt="TRAPPANYAKI mascot">
+</div>
 
-  <header>
-    <p class="brand">TRAPPANYAKI</p>
-    <p class="tag">Luxury Street Hibachi &middot; Bless Ya Taste Buds</p>
-  </header>
+<div class="wrap">
 
   <div class="card policy">
     <h2>Before You Order</h2>
@@ -148,6 +173,7 @@
       <li>All orders are <strong>prepay before cook</strong> — no exceptions.</li>
       <li>Cook windows are limited — we cook in batches, not on demand.</li>
       <li>Pickup only (no delivery unless DoorDash is live in your area).</li>
+      <li>Pickup at <strong>2988 Frank Brown Ln</strong>, <strong>4 PM–12 AM</strong>.</li>
     </ul>
   </div>
 
