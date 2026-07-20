@@ -70,6 +70,9 @@
     height:auto;
     filter:drop-shadow(0 6px 14px rgba(0,0,0,0.6));
   }
+  .food-card{padding:0;overflow:hidden;}
+  .food-photo{width:100%;height:auto;display:block;max-height:420px;object-fit:cover;}
+  .food-caption{padding:14px 20px;margin:0;text-align:center;font-style:italic;}
   .card{
     background:var(--bg-panel);
     border:1px solid var(--border);
@@ -178,6 +181,11 @@
 </div>
 
 <div class="wrap">
+
+  <div class="card food-card">
+    <img class="food-photo" src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/food1.jpg" alt="Real TRAPPANYAKI hibachi plate, fresh off the grill">
+    <p class="policy food-caption">Fresh off the grill — real plates, real fire.</p>
+  </div>
 
   <div class="card policy">
     <h2>Before You Order</h2>
