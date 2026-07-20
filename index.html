@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRAPPANYAKI | Luxury Street Hibachi</title>
+<style>
+  :root{
+    --bg:#0b0906;
+    --bg-panel:#161210;
+    --bg-panel-2:#1f1a16;
+    --fire-orange:#ff6a1a;
+    --fire-red:#e0392b;
+    --gold:#f2b544;
+    --text:#f5efe8;
+    --text-dim:#b9ada0;
+    --border:#3a2f27;
+    --success:#3fae5c;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(circle at 50% 0%, #241a12 0%, var(--bg) 55%);
+    color:var(--text);
+    line-height:1.5;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:24px 16px 80px;}
+  header{text-align:center;padding:28px 0 8px;}
+  header .brand{
+    font-size:2rem;
+    font-weight:800;
+    letter-spacing:2px;
+    background:linear-gradient(90deg,var(--gold),var(--fire-orange),var(--fire-red));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    margin:0;
+  }
+  header .tag{color:var(--text-dim);font-size:.85rem;letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+  .card{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:20px;
+    margin-top:18px;
+  }
+  .card h2{
+    margin:0 0 12px;
+    font-size:1.05rem;
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+  .policy{font-size:.85rem;color:var(--text-dim);}
+  .policy li{margin-bottom:4px;}
+  label{display:block;font-size:.8rem;color:var(--text-dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
+  select, input[type="text"], input[type="date"], input[type="number"]{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--bg-panel-2);
+    color:var(--text);
+    font-size:1rem;
+    margin-bottom:14px;
+  }
+  select:focus, input:focus{outline:2px solid var(--fire-orange);}
+  .row{display:flex;gap:12px;}
+  .row > div{flex:1;}
+  .checkbox-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+  .checkbox-row input{width:auto;margin:0;}
+  .checkbox-row label{margin:0;text-transform:none;font-size:.95rem;color:var(--text);}
+  .qty-control{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .qty-control button{
+    width:38px;height:38px;border-radius:8px;border:1px solid var(--border);
+    background:var(--bg-panel-2);color:var(--text);font-size:1.1rem;cursor:pointer;
+  }
+  .qty-control span{min-width:24px;text-align:center;font-weight:600;}
+  button.primary{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(90deg,var(--fire-orange),var(--fire-red));
+    color:#fff;
+    font-weight:700;
+    font-size:1rem;
+    letter-spacing:.5px;
+    cursor:pointer;
+    margin-top:4px;
+  }
+  button.primary:active{transform:scale(0.99);}
+  button.secondary{
+    width:100%;
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:transparent;
+    color:var(--text);
+    font-weight:600;
+    cursor:pointer;
+    margin-top:10px;
+  }
+  .order-list{list-style:none;padding:0;margin:0 0 12px;}
+  .order-list li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid var(--border);
+    font-size:.92rem;
+  }
+  .order-list li .meta{color:var(--text-dim);font-size:.78rem;}
+  .order-list li button{
+    background:none;border:none;color:var(--fire-orange);cursor:pointer;font-size:.8rem;
+    text-decoration:underline;
+  }
+  .empty-note{color:var(--text-dim);font-size:.88rem;padding:8px 0;}
+  .total-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:12px;margin-top:4px;border-top:2px solid var(--border);
+    font-size:1.2rem;font-weight:800;
+  }
+  .total-row .amt{color:var(--gold);}
+  .toast{
+    position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+    background:var(--success);color:#fff;padding:10px 18px;border-radius:8px;
+    font-size:.9rem;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s ease;
+    z-index:50;
+  }
+  .toast.show{opacity:1;}
+  .footer-note{text-align:center;color:var(--text-dim);font-size:.78rem;margin-top:26px;}
+  .price-tag{color:var(--gold);font-weight:700;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="brand">TRAPPANYAKI</p>
+    <p class="tag">Luxury Street Hibachi &middot; Bless Ya Taste Buds</p>
+  </header>
+
+  <div class="card policy">
+    <h2>Before You Order</h2>
+    <ul>
+      <li>All orders are <strong>prepay before cook</strong> — no exceptions.</li>
+      <li>Cook windows are limited — we cook in batches, not on demand.</li>
+      <li>Pickup only (no delivery unless DoorDash is live in your area).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Build Your Order</h2>
+
+    <label for="dish">Dish</label>
+    <select id="dish"></select>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="rito">
+      <label for="rito">Make it a Rito (burrito) — +$10.00</label>
+    </div>
+
+    <label>Quantity</label>
+    <div class="qty-control">
+      <button type="button" id="qtyMinus">&minus;</button>
+      <span id="qtyVal">1</span>
+      <button type="button" id="qtyPlus">+</button>
+    </div>
+
+    <button class="primary" id="addBtn">Add to Order</button>
+  </div>
+
+  <div class="card">
+    <h2>Your Order</h2>
+    <ul class="order-list" id="orderList"></ul>
+    <p class="empty-note" id="emptyNote">Nothing added yet — build your plate above.</p>
+    <div class="total-row">
+      <span>Total</span>
+      <span class="amt" id="totalAmt">$0.00</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Your Info</h2>
+    <div class="row">
+      <div>
+        <label for="custName">Name</label>
+        <input type="text" id="custName" placeholder="Your name">
+      </div>
+      <div>
+        <label for="custDate">Pickup Date</label>
+        <input type="date" id="custDate">
+      </div>
+    </div>
+    <label for="custHandle">Instagram Handle or Phone</label>
+    <input type="text" id="custHandle" placeholder="@yourhandle or phone number">
+  </div>
+
+  <div class="card">
+    <h2>Lock It In</h2>
+    <p class="policy">Send the exact total above via any of these, then screenshot it and message us to confirm your cook window:</p>
+    <ul class="policy">
+      <li>CashApp — <strong>$trappanyaki</strong></li>
+      <li>Venmo — <strong>@trappanyaki</strong></li>
+      <li>Chime — <strong>@trappanyaki</strong></li>
+      <li>PayPal — <strong>@trappanyaki</strong></li>
+    </ul>
+    <button class="primary" id="copyBtn">Copy Order Summary</button>
+    <button class="secondary" id="igBtn">Message @TRAPPANYAKI on Instagram</button>
+  </div>
+
+  <p class="footer-note">TRAPPANYAKI &middot; Luxury Street Hibachi &middot; Bless Ya Taste Buds.</p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const MENU = [
+    { name: "Chicken", price: 24.99 },
+    { name: "Shrimp", price: 29.99 },
+    { name: "Salmon / Scallops", price: 34.99 },
+    { name: "Ribeye", price: 39.99 },
+    { name: "Lobster", price: 44.99 },
+    { name: "Combo: Chicken + Shrimp", price: 29.99 },
+    { name: "Combo: Ribeye + Shrimp", price: 49.99 },
+    { name: "Combo: Ribeye + Lobster", price: 54.99 },
+    { name: "Combo: Filet + Shrimp", price: 44.99 },
+    { name: "Combo: Filet + Lobster", price: 64.99 },
+    { name: "Signature: Trappanyaki Plate", price: 59.99 },
+    { name: "Signature: Filet + Crown", price: 69.99 },
+  ];
+  const RITO_PRICE = 10.00;
+
+  const dishSelect = document.getElementById("dish");
+  MENU.forEach((item, i) => {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = `${item.name} — $${item.price.toFixed(2)}`;
+    dishSelect.appendChild(opt);
+  });
+
+  let qty = 1;
+  const qtyVal = document.getElementById("qtyVal");
+  document.getElementById("qtyPlus").addEventListener("click", () => {
+    qty++; qtyVal.textContent = qty;
+  });
+  document.getElementById("qtyMinus").addEventListener("click", () => {
+    if (qty > 1) { qty--; qtyVal.textContent = qty; }
+  });
+
+  let order = [];
+
+  function fmt(n) { return `$${n.toFixed(2)}`; }
+
+  function render() {
+    const list = document.getElementById("orderList");
+    const emptyNote = document.getElementById("emptyNote");
+    list.innerHTML = "";
+
+    if (order.length === 0) {
+      emptyNote.style.display = "block";
+    } else {
+      emptyNote.style.display = "none";
+      order.forEach((line, idx) => {
+        const li = document.createElement("li");
+        const lineTotal = (line.price + (line.rito ? RITO_PRICE : 0)) * line.qty;
+        li.innerHTML = `
+          <span>
+            ${line.name}${line.rito ? " (Rito)" : ""} &times; ${line.qty}
+            <div class="meta">${fmt(line.price + (line.rito ? RITO_PRICE : 0))} each</div>
+          </span>
+          <span class="price-tag">${fmt(lineTotal)}</span>
+          <button data-idx="${idx}" class="removeBtn">Remove</button>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    const total = order.reduce((sum, l) => sum + (l.price + (l.rito ? RITO_PRICE : 0)) * l.qty, 0);
+    document.getElementById("totalAmt").textContent = fmt(total);
+
+    document.querySelectorAll(".removeBtn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        order.splice(Number(e.target.dataset.idx), 1);
+        render();
+      });
+    });
+  }
+
+  document.getElementById("addBtn").addEventListener("click", () => {
+    const item = MENU[Number(dishSelect.value)];
+    const rito = document.getElementById("rito").checked;
+    order.push({ name: item.name, price: item.price, rito, qty });
+    qty = 1;
+    qtyVal.textContent = 1;
+    document.getElementById("rito").checked = false;
+    render();
+  });
+
+  function showToast(msg) {
+    const toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2200);
+  }
+
+  function buildSummary() {
+    const name = document.getElementById("custName").value || "(name not entered)";
+    const date = document.getElementById("custDate").value || "(date not entered)";
+    const handle = document.getElementById("custHandle").value || "(IG/phone not entered)";
+    const total = order.reduce((sum, l) => sum + (l.price + (l.rito ? RITO_PRICE : 0)) * l.qty, 0);
+
+    let lines = [`TRAPPANYAKI ORDER`, `Name: ${name}`, `Pickup date: ${date}`, `Contact: ${handle}`, ``, `Order:`];
+    order.forEach(l => {
+      lines.push(`- ${l.name}${l.rito ? " (Rito)" : ""} x${l.qty} — ${fmt((l.price + (l.rito ? RITO_PRICE : 0)) * l.qty)}`);
+    });
+    lines.push(``, `TOTAL: ${fmt(total)}`);
+    return lines.join("\n");
+  }
+
+  document.getElementById("copyBtn").addEventListener("click", () => {
+    if (order.length === 0) { showToast("Add at least one item first"); return; }
+    const summary = buildSummary();
+    navigator.clipboard.writeText(summary).then(() => {
+      showToast("Order summary copied — paste it into your DM");
+    }).catch(() => {
+      showToast("Couldn't copy — select and copy manually");
+    });
+  });
+
+  document.getElementById("igBtn").addEventListener("click", () => {
+    window.open("https://instagram.com/TRAPPANYAKI", "_blank");
+  });
+
+  render();
+</script>
+</body>
+</html>
