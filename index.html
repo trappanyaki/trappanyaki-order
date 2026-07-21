@@ -190,6 +190,15 @@
   .checkbox-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
   .checkbox-row input{width:auto;margin:0;}
   .checkbox-row label{margin:0;text-transform:none;font-size:.95rem;color:var(--text);}
+  .addon-list{
+    max-height:230px;overflow-y:auto;
+    border:1px solid var(--border);border-radius:8px;
+    padding:10px 12px;margin-bottom:14px;
+    background:var(--bg-panel-2);
+  }
+  .addon-list .checkbox-row{margin-bottom:10px;}
+  .addon-list .checkbox-row:last-child{margin-bottom:0;}
+  .addon-list .checkbox-row label{font-size:.85rem;}
   .qty-control{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
   .qty-control button{
     width:38px;height:38px;border-radius:8px;border:1px solid var(--border);
@@ -332,13 +341,11 @@
   <div class="card" id="order">
     <h2>Build Your Order</h2>
 
-    <label for="dish">Dish</label>
+    <label for="dish">Item</label>
     <select id="dish"></select>
 
-    <div class="checkbox-row">
-      <input type="checkbox" id="rito">
-      <label for="rito">Make it a Rito (burrito) — +$10.00</label>
-    </div>
+    <label>Add-Ons (optional)</label>
+    <div class="addon-list" id="addonList"></div>
 
     <label>Quantity</label>
     <div class="qty-control">
@@ -459,27 +466,83 @@
   }
 
   const MENU = [
-    { name: "Chicken", price: 24.99 },
-    { name: "Shrimp", price: 29.99 },
-    { name: "Salmon / Scallops", price: 34.99 },
-    { name: "Ribeye", price: 39.99 },
-    { name: "Lobster", price: 44.99 },
-    { name: "Combo: Chicken + Shrimp", price: 29.99 },
-    { name: "Combo: Ribeye + Shrimp", price: 49.99 },
-    { name: "Combo: Ribeye + Lobster", price: 54.99 },
-    { name: "Combo: Filet + Shrimp", price: 44.99 },
-    { name: "Combo: Filet + Lobster", price: 64.99 },
-    { name: "Signature: Trappanyaki Plate", price: 59.99 },
-    { name: "Signature: Filet + Crown", price: 69.99 },
+    { cat: "Hibachi Plates", name: "Chicken", price: 24.99 },
+    { cat: "Hibachi Plates", name: "Shrimp", price: 29.99 },
+    { cat: "Hibachi Plates", name: "Salmon", price: 34.99 },
+    { cat: "Hibachi Plates", name: "Scallops", price: 34.99 },
+    { cat: "Hibachi Plates", name: "Ribeye", price: 39.99 },
+    { cat: "Hibachi Plates", name: "Lobster Tail", price: 44.99 },
+    { cat: "Hibachi Plates", name: "Filet Mignon", price: 49.99 },
+
+    { cat: "Combo Plates", name: "Chicken & Shrimp", price: 34.99 },
+    { cat: "Combo Plates", name: "Filet & Shrimp", price: 44.99 },
+    { cat: "Combo Plates", name: "Ribeye & Shrimp", price: 49.99 },
+    { cat: "Combo Plates", name: "Ribeye & Lobster", price: 54.99 },
+    { cat: "Combo Plates", name: "Filet & Lobster", price: 64.99 },
+
+    { cat: "Bussdown Designer Burritos", name: "Chicken", price: 24.99 },
+    { cat: "Bussdown Designer Burritos", name: "Shrimp", price: 29.99 },
+    { cat: "Bussdown Designer Burritos", name: "Salmon", price: 34.99 },
+    { cat: "Bussdown Designer Burritos", name: "Scallops", price: 34.99 },
+    { cat: "Bussdown Designer Burritos", name: "Ribeye", price: 39.99 },
+    { cat: "Bussdown Designer Burritos", name: "Lobster", price: 44.99 },
+    { cat: "Bussdown Designer Burritos", name: "Filet", price: 49.99 },
+    { cat: "Bussdown Designer Burritos", name: "Chicken & Shrimp", price: 29.99 },
+    { cat: "Bussdown Designer Burritos", name: "Steak & Shrimp", price: 34.99 },
+    { cat: "Bussdown Designer Burritos", name: "Ribeye & Shrimp", price: 49.99 },
+    { cat: "Bussdown Designer Burritos", name: "Ribeye & Lobster", price: 64.99 },
+    { cat: "Bussdown Designer Burritos", name: "Filet & Lobster", price: 74.99 },
+    { cat: "Bussdown Designer Burritos", name: "TRAPPANYAKI Rito (Ribeye, Lobster, Scallops)", price: 49.99 },
+    { cat: "Bussdown Designer Burritos", name: "Filet & Crown Rito (Filet, Lobster, Scallops)", price: 59.99 },
+
+    { cat: "Garlic Noodle Menu", name: "Chicken", price: 24.99 },
+    { cat: "Garlic Noodle Menu", name: "Shrimp", price: 29.99 },
+    { cat: "Garlic Noodle Menu", name: "Steak", price: 29.99 },
+    { cat: "Garlic Noodle Menu", name: "Salmon", price: 34.99 },
+    { cat: "Garlic Noodle Menu", name: "Ribeye", price: 39.99 },
+    { cat: "Garlic Noodle Menu", name: "Filet Mignon", price: 49.99 },
+    { cat: "Garlic Noodle Menu", name: "Chicken & Steak", price: 34.99 },
+    { cat: "Garlic Noodle Menu", name: "Steak & Shrimp", price: 34.99 },
   ];
-  const RITO_PRICE = 10.00;
+
+  const ADDONS = [
+    { name: "Garlic Noodles (side)", price: 9.99 },
+    { name: "Extra Sauce", price: 2.99 },
+    { name: "Add Lobster Tail", price: 19.99 },
+    { name: "Add Shrimp", price: 8.99 },
+    { name: "Add Chicken", price: 5.99 },
+    { name: "Upgrade to Ribeye", price: 14.99 },
+    { name: "Upgrade to Filet", price: 19.99 },
+    { name: "Double Protein (burritos)", price: 5.99 },
+    { name: "Extra Garlic Butter", price: 1.99 },
+    { name: "Extra YumYaki Sauce", price: 1.99 },
+  ];
 
   const dishSelect = document.getElementById("dish");
+  let currentGroup = null;
   MENU.forEach((item, i) => {
+    if (item.cat !== currentGroup) {
+      currentGroup = item.cat;
+      const group = document.createElement("optgroup");
+      group.label = currentGroup;
+      group.dataset.cat = currentGroup;
+      dishSelect.appendChild(group);
+    }
     const opt = document.createElement("option");
     opt.value = i;
     opt.textContent = `${item.name} — $${item.price.toFixed(2)}`;
-    dishSelect.appendChild(opt);
+    dishSelect.lastElementChild.appendChild(opt);
+  });
+
+  const addonList = document.getElementById("addonList");
+  ADDONS.forEach((addon, i) => {
+    const row = document.createElement("div");
+    row.className = "checkbox-row";
+    row.innerHTML = `
+      <input type="checkbox" id="addon-${i}" data-idx="${i}">
+      <label for="addon-${i}">${addon.name} — +${addon.price.toFixed(2)}</label>
+    `;
+    addonList.appendChild(row);
   });
 
   let qty = 1;
@@ -495,6 +558,10 @@
 
   function fmt(n) { return `$${n.toFixed(2)}`; }
 
+  function lineUnitPrice(line) {
+    return line.price + line.addons.reduce((sum, a) => sum + a.price, 0);
+  }
+
   function render() {
     const list = document.getElementById("orderList");
     const emptyNote = document.getElementById("emptyNote");
@@ -506,11 +573,13 @@
       emptyNote.style.display = "none";
       order.forEach((line, idx) => {
         const li = document.createElement("li");
-        const lineTotal = (line.price + (line.rito ? RITO_PRICE : 0)) * line.qty;
+        const unit = lineUnitPrice(line);
+        const lineTotal = unit * line.qty;
+        const addonNames = line.addons.map(a => a.name).join(", ");
         li.innerHTML = `
           <span>
-            ${line.name}${line.rito ? " (Rito)" : ""} &times; ${line.qty}
-            <div class="meta">${fmt(line.price + (line.rito ? RITO_PRICE : 0))} each</div>
+            ${line.name} &times; ${line.qty}
+            <div class="meta">${fmt(unit)} each${addonNames ? " · " + addonNames : ""}</div>
           </span>
           <span class="price-tag">${fmt(lineTotal)}</span>
           <button data-idx="${idx}" class="removeBtn">Remove</button>
@@ -519,7 +588,7 @@
       });
     }
 
-    const total = order.reduce((sum, l) => sum + (l.price + (l.rito ? RITO_PRICE : 0)) * l.qty, 0);
+    const total = order.reduce((sum, l) => sum + lineUnitPrice(l) * l.qty, 0);
     document.getElementById("totalAmt").textContent = fmt(total);
 
     document.querySelectorAll(".removeBtn").forEach(btn => {
@@ -532,11 +601,14 @@
 
   document.getElementById("addBtn").addEventListener("click", () => {
     const item = MENU[Number(dishSelect.value)];
-    const rito = document.getElementById("rito").checked;
-    order.push({ name: item.name, price: item.price, rito, qty });
+    const addons = ADDONS
+      .map((a, i) => ({ a, checked: document.getElementById(`addon-${i}`).checked }))
+      .filter(x => x.checked)
+      .map(x => x.a);
+    order.push({ name: item.name, price: item.price, addons, qty });
     qty = 1;
     qtyVal.textContent = 1;
-    document.getElementById("rito").checked = false;
+    ADDONS.forEach((a, i) => { document.getElementById(`addon-${i}`).checked = false; });
     render();
   });
 
@@ -551,11 +623,12 @@
     const name = document.getElementById("custName").value || "(name not entered)";
     const date = document.getElementById("custDate").value || "(date not entered)";
     const handle = document.getElementById("custHandle").value || "(IG/phone not entered)";
-    const total = order.reduce((sum, l) => sum + (l.price + (l.rito ? RITO_PRICE : 0)) * l.qty, 0);
+    const total = order.reduce((sum, l) => sum + lineUnitPrice(l) * l.qty, 0);
 
     let lines = [`TRAPPANYAKI ORDER`, `Name: ${name}`, `Pickup date: ${date}`, `Contact: ${handle}`, ``, `Order:`];
     order.forEach(l => {
-      lines.push(`- ${l.name}${l.rito ? " (Rito)" : ""} x${l.qty} — ${fmt((l.price + (l.rito ? RITO_PRICE : 0)) * l.qty)}`);
+      const addonNames = l.addons.map(a => a.name).join(", ");
+      lines.push(`- ${l.name}${addonNames ? ` (${addonNames})` : ""} x${l.qty} — ${fmt(lineUnitPrice(l) * l.qty)}`);
     });
     lines.push(``, `TOTAL: ${fmt(total)}`);
 
@@ -564,7 +637,10 @@
     }
 
     const today = new Date().toISOString().slice(0, 10);
-    const itemsList = order.map(l => `${l.name}${l.rito ? " (Rito)" : ""} x${l.qty}`).join("; ");
+    const itemsList = order.map(l => {
+      const addonNames = l.addons.map(a => a.name).join(", ");
+      return `${l.name}${addonNames ? ` (${addonNames})` : ""} x${l.qty}`;
+    }).join("; ");
     const trackerRow = [today, "Plate", name, handle, itemsList, total.toFixed(2), date, "", "New Lead", ""].join("\t");
     lines.push(``, `— — —`, `For Trapp: copy the line below and paste it as a new row into the tracker sheet —`, trackerRow);
 
