@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TRAPPANYAKI | Luxury Street Hibachi</title>
-<meta name="description" content="TRAPPANYAKI — Luxury Street Hibachi. Build your plate, see your total, and lock in your order. Pickup only, prepay before cook. Bless Ya Taste Buds.">
+<title>TRAPPANYAKI | Bay Area Teppanyaki</title>
+<meta name="description" content="TRAPPANYAKI — Bay Area teppanyaki for pickup, office lunches, celebrations, and live catering. Built the Trappanyaki Way.">
 <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/logo.jpg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="TRAPPANYAKI | Luxury Street Hibachi">
@@ -15,7 +15,7 @@
 <meta name="twitter:title" content="TRAPPANYAKI | Luxury Street Hibachi">
 <meta name="twitter:description" content="Build your plate, see your total, and lock in your order. Bless Ya Taste Buds.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/mascot.png">
-<meta name="theme-color" content="#0b0906">
+<meta name="theme-color" content="#c62828">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -262,6 +262,84 @@
   .footer-note a{color:var(--gold);text-decoration:none;font-weight:600;}
   .footer-note a:hover{text-decoration:underline;}
   .price-tag{color:var(--gold);font-weight:700;}
+
+  @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700;800&family=Playfair+Display+SC:wght@400;700&display=swap');
+  :root{
+    --bg:#f4f1ec;--bg-panel:#ffffff;--bg-panel-2:#f0ece6;
+    --fire-orange:#c62828;--fire-red:#a51f1f;--gold:#a16207;
+    --text:#171717;--text-dim:#5d5a56;--border:#171717;--success:#277a43;
+  }
+  body{font-family:Karla,Arial,sans-serif;background:var(--bg);background-image:none;color:var(--text);}
+  .hero{margin:0;padding:30px clamp(22px,5vw,72px) 64px;text-align:left;background:linear-gradient(90deg,rgba(17,17,17,.97) 0%,rgba(17,17,17,.78) 46%,rgba(17,17,17,.24) 100%),url("https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/hero.jpg") center/cover no-repeat;border:0;min-height:540px;display:flex;align-items:flex-end;}
+  .hero-inner{width:100%;max-width:1240px;margin:0 auto;}
+  header{text-align:left;padding:0;max-width:690px;}
+  header .logo-img{width:180px;margin:0 0 42px;filter:none;}
+  header .brand{display:none;}
+  .eyebrow,.section-kicker{font-size:.72rem;letter-spacing:2px;font-weight:800;color:var(--fire-orange);margin:0 0 12px;text-transform:uppercase;}
+  .hero .eyebrow{color:#f4c7c1;}
+  header h1{font-size:clamp(3.1rem,8vw,7rem);line-height:.9;letter-spacing:-3px;margin:0 0 24px;font-weight:800;color:#fff;text-transform:uppercase;}
+  header h1 span{font-family:"Playfair Display SC",Georgia,serif;color:#f4c7c1;text-transform:none;letter-spacing:-1px;}
+  header .tag{font-size:1.15rem;letter-spacing:0;color:#fff;text-transform:none;margin:0 0 26px;max-width:500px;}
+  .hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .hero-cta{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;text-decoration:none;font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:.78rem;border:2px solid #fff;}
+  .hero-cta-red{background:var(--fire-orange);border-color:var(--fire-orange);color:#fff;}
+  .hero-cta-light{color:#fff;background:transparent;}
+  .ticker{background:var(--fire-orange);color:#fff;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:11px 16px;font-size:.72rem;font-weight:800;letter-spacing:1.5px;}
+  .site-nav{position:sticky;top:0;background:#171717;border:0;padding:15px clamp(18px,5vw,72px);justify-content:flex-end;gap:26px;}
+  .site-nav a{color:#fff;font-size:.75rem;letter-spacing:1.5px;}
+  .site-nav a:hover{color:#f4c7c1;}
+  .wrap{max-width:1240px;padding:48px clamp(18px,5vw,72px) 100px;}
+  .intro-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:42px;align-items:stretch;margin:0 0 48px;}
+  .intro-copy{padding:22px 0;}
+  .intro-copy h2{font-size:clamp(2.2rem,5vw,4.4rem);line-height:.98;letter-spacing:-2px;margin:0 0 22px;text-transform:uppercase;}
+  .intro-copy h2 em,.card h2 em{font-family:"Playfair Display SC",Georgia,serif;font-weight:400;text-transform:none;color:var(--fire-orange);letter-spacing:-1px;}
+  .intro-copy>p:not(.section-kicker){font-size:1.15rem;line-height:1.55;max-width:480px;color:var(--text-dim);}
+  .intro-photo{min-height:400px;overflow:hidden;border:2px solid var(--text);}
+  .intro-photo img{width:100%;height:100%;display:block;object-fit:cover;}
+  .intro-stats{display:flex;gap:24px;margin-top:34px;border-top:2px solid var(--text);padding-top:18px;}
+  .intro-stats div{display:flex;flex-direction:column;gap:5px;}
+  .intro-stats strong{font-size:1.4rem;color:var(--fire-orange);}
+  .intro-stats span{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;}
+  .card{background:var(--bg-panel);border:2px solid var(--text);border-radius:0;padding:28px;margin-top:24px;box-shadow:6px 6px 0 var(--text);}
+  .card h2{font-size:clamp(1.6rem,3vw,2.5rem);letter-spacing:-1px;color:var(--text);text-transform:uppercase;margin:0 0 18px;}
+  .food-card{box-shadow:none;background:#171717;color:#fff;border-color:#171717;}
+  .food-card .food-photo{max-height:500px;object-fit:cover;}
+  .food-caption{font-size:1.1rem;padding:18px 0 2px;}
+  .gallery-grid{grid-template-columns:repeat(4,1fr);gap:12px;}
+  .gallery-grid img{height:240px;border-radius:0;border:0;}
+  .section-kicker{color:var(--fire-orange);}
+  .policy{color:var(--text-dim);}
+  .card .policy a,.footer-note a{color:var(--fire-orange);}
+  .batch-bar-track{border-radius:0;border:2px solid var(--text);background:#eee;height:18px;}
+  .batch-bar-fill{border-radius:0;background:var(--fire-orange);}
+  .batch-bar-fill.full{background:var(--text);}
+  .step-num{border-radius:0;background:var(--fire-orange);color:#fff;}
+  select,input[type="text"],input[type="date"],input[type="number"]{border-radius:0;border:2px solid var(--text);background:#fff;color:var(--text);}
+  .addon-list{border-radius:0;border:2px solid var(--text);background:var(--bg-panel-2);}
+  button.primary{border-radius:0;background:var(--fire-orange);min-height:50px;}
+  button.secondary{border-radius:0;border:2px solid var(--text);color:var(--text);background:#fff;min-height:50px;}
+  .qty-control button{border-radius:0;border:2px solid var(--text);background:#fff;color:var(--text);}
+  .total-row{border-color:var(--text);}
+  .total-row .amt,.price-tag{color:var(--fire-orange);}
+  .catering-tier{border-color:#d3cec6;}
+  .faq-item{border-color:#d3cec6;}
+  .toast{border-radius:0;background:var(--text);}
+  @media (max-width:800px){
+    .hero{min-height:620px;padding-bottom:42px;}
+    .intro-grid{grid-template-columns:1fr;gap:24px;}
+    .intro-photo{min-height:280px;max-height:360px;}
+    .gallery-grid{grid-template-columns:1fr 1fr;}
+    .gallery-grid img{height:180px;}
+    .site-nav{justify-content:center;}
+  }
+  @media (max-width:480px){
+    header h1{font-size:3.2rem;}
+    .ticker{justify-content:flex-start;gap:10px;font-size:.62rem;}
+    .wrap{padding-top:32px;}
+    .intro-stats{gap:12px;}
+    .intro-stats span{font-size:.68rem;}
+  }
+
 </style>
 </head>
 <body>
@@ -269,13 +347,13 @@
   <div class="hero-inner">
     <header>
       <img class="logo-img" src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/logo.jpg" alt="TRAPPANYAKI logo">
-      <p class="tag">Luxury Street Hibachi &middot; Bless Ya Taste Buds</p>
+      <p class="eyebrow">TRACY · STOCKTON · THE BAY AREA</p><h1>Big flavor.<br><span>Built for the Bay.</span></h1><p class="tag">Teppanyaki plates, office catering, and real grill energy.</p><div class="hero-actions"><a class="hero-cta hero-cta-red" href="#order">Start an Order</a><a class="hero-cta hero-cta-light" href="#catering">Plan Catering</a></div>
     </header>
   </div>
   <img class="mascot-float" src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/mascot.png" alt="TRAPPANYAKI mascot">
 </div>
 
-<nav class="site-nav">
+<div class="ticker"><span>FRESH OFF THE GRILL</span><span>·</span><span>PICKUP IN TRACY</span><span>·</span><span>CORPORATE CATERING</span><span>·</span><span>BLESS YA TASTE BUDS</span></div>\n<nav class="site-nav">
   <a href="#order">Order</a>
   <a href="#catering">Catering</a>
   <a href="#faq">FAQ</a>
@@ -283,13 +361,13 @@
 
 <div class="wrap">
 
-  <div class="card food-card">
+  <section class="intro-grid"><div class="intro-copy"><p class="section-kicker">THE TRAPPANYAKI STANDARD</p><h2>Restaurant energy.<br><em>Business-ready service.</em></h2><p>From a quick pickup plate to a 100-person office lunch, we bring bold hibachi flavor with a clean, organized experience.</p><div class="intro-stats"><div><strong>01</strong><span>Order online</span></div><div><strong>02</strong><span>Choose your window</span></div><div><strong>03</strong><span>Pull up hungry</span></div></div></div><div class="intro-photo"><img src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/food1.jpg" alt="Trappanyaki hibachi plate fresh from the grill"></div></section>\n\n  <div class="card food-card">
     <img class="food-photo" src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/food1.jpg" alt="Real TRAPPANYAKI hibachi plate, fresh off the grill">
     <p class="policy food-caption">Fresh off the grill — real plates, real fire.</p>
   </div>
 
   <div class="card gallery-card">
-    <h2>The Food</h2>
+    <p class="section-kicker">REAL PLATES · REAL FIRE</p><h2>Made to be <em>remembered.</em></h2>
     <div class="gallery-grid">
       <img src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/food2.jpg" alt="Shrimp, chicken, and steak hibachi bowl">
       <img src="https://raw.githubusercontent.com/trappanyaki/trappanyaki-order/main/assets/food3.jpg" alt="Salmon, shrimp, and steak combo plate">
@@ -299,7 +377,7 @@
   </div>
 
   <div class="card">
-    <h2>How It Works</h2>
+    <p class="section-kicker">SIMPLE BY DESIGN</p><h2>How your order moves.</h2>
     <div class="steps">
       <div class="step">
         <span class="step-num">1</span>
@@ -321,7 +399,7 @@
   </div>
 
   <div class="card" id="batchCard">
-    <h2>Next Cook Window</h2>
+    <p class="section-kicker">LIMITED CAPACITY</p><h2>Next cook window.</h2>
     <div class="batch-bar-track">
       <div class="batch-bar-fill" id="batchBarFill"></div>
     </div>
@@ -329,7 +407,7 @@
   </div>
 
   <div class="card policy">
-    <h2>Before You Order</h2>
+    <p class="section-kicker">GOOD TO KNOW</p><h2>Before you order.</h2>
     <ul>
       <li>All orders are <strong>prepay before cook</strong> — no exceptions.</li>
       <li>Cook windows are limited to <strong>8 plates per batch</strong> — we cook in batches, not on demand.</li>
@@ -339,7 +417,7 @@
   </div>
 
   <div class="card" id="order">
-    <h2>Build Your Order</h2>
+    <p class="section-kicker">PICK YOUR PLATE</p><h2>Build your order.</h2>
 
     <label for="dish">Item</label>
     <select id="dish"></select>
@@ -358,7 +436,7 @@
   </div>
 
   <div class="card">
-    <h2>Your Order</h2>
+    <p class="section-kicker">YOUR PICKS</p><h2>Your order.</h2>
     <ul class="order-list" id="orderList"></ul>
     <p class="empty-note" id="emptyNote">Nothing added yet — build your plate above.</p>
     <div class="total-row">
@@ -368,7 +446,7 @@
   </div>
 
   <div class="card">
-    <h2>Your Info</h2>
+    <p class="section-kicker">PICKUP DETAILS</p><h2>Your info.</h2>
     <div class="row">
       <div>
         <label for="custName">Name</label>
@@ -384,7 +462,7 @@
   </div>
 
   <div class="card">
-    <h2>Lock It In</h2>
+    <p class="section-kicker">FINAL STEP</p><h2>Lock it in.</h2>
     <p class="policy">Send the exact total above via any of these, then screenshot it and message us to confirm your cook window:</p>
     <ul class="policy">
       <li>CashApp — <strong>$trappanyaki</strong></li>
@@ -398,7 +476,7 @@
   </div>
 
   <div class="card" id="catering">
-    <h2>Catering</h2>
+    <p class="section-kicker">FOR TEAMS · FAMILIES · FUNCTIONS</p><h2>Catering that shows up.</h2>
     <p class="policy">TRAPPANYAKI does live hibachi catering — real setup, real fire, real food.</p>
     <div class="catering-tier">
       <h3>🎉 Private Event</h3>
@@ -416,7 +494,7 @@
   </div>
 
   <div class="card" id="faq">
-    <h2>FAQ</h2>
+    <p class="section-kicker">NEED TO KNOW</p><h2>FAQ.</h2>
     <details class="faq-item">
       <summary>Can I cancel my order?</summary>
       <p class="policy">No refunds, but we'll happily reschedule you to the next available cook window — just DM us.</p>
